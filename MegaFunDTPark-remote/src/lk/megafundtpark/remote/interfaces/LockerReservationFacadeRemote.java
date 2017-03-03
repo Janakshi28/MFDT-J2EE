@@ -5,7 +5,7 @@
  */
 package lk.megafundtpark.remote.interfaces;
 
-
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -16,6 +16,22 @@ import javax.ejb.Remote;
 public interface LockerReservationFacadeRemote {
 
     public void persist(Object object);
+
+    public void addNewReservation(String lockerId);
+
+    public void addNewReservation(String bandId, String lockerId);
+
+    public void reserveLocker(String bandId, String lockerId);
+
+    public void clearLocker(String bandId, String lockerId);
+
+    public List<String> getReservedLockerList(String bandId);
+
+    public void removeEBand(String bandId);
+
+    public int getLockersPerEBand(String bandId);
+
+    public int getAllReservedLockerCounter();
 	
     public void remove();
     
