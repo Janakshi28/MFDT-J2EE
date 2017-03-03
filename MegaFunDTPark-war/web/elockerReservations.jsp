@@ -201,13 +201,75 @@
                                        
                             </c:when>
                         <c:when test="${user ne null }">
-                            <p class="login-box-msg">Ticket issuing for current session</p>
+                            <p class="login-box-msg">Locker Reservations for current session</p>
                         </c:when>
                         
                     </c:choose>
               <p class="login-box-msg">Reserve a locker using e-payments</p>
-
+              <form action="./ReserveElockerServlet" method="post">
+                  
+                <div class="form-group has-feedback">
+                  <input type="text" class="form-control" name="bandid" placeholder="E-Band ID">
+                  <span class="fa  fa-user form-control-feedback"></span>
+                </div>                  
+                 <div class="form-group has-feedback">
+                     <select name="lockerNo" id="park" class="form-control" >
+                         <option value="">Select a Locker</option>
+                         
+                         <c:forEach items="${requestScope.lockers}" var="item">                            
+                             <option value="${item.getLockerid()}">${item.getLockerid()}</option>
+                        </c:forEach>
+                                                
+                      </select>           
+                  <span class="fa  fa-box form-control-feedback"></span>
+                </div>
+               
               
+                <div class="row">
+                  <div class="col-xs-8" >
+                    <div class="checkbox icheck">
+                      
+                    </div>
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Reserve</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                   <div class="row">
+                  <div class="col-xs-8" >
+                    <div class="checkbox icheck">
+                      
+                    </div>
+                  </div>
+                  <!-- /.col -->              
+                </div>
+              </form>
+              <c:choose>
+             
+                        <c:when test="${'1' eq sessionScope.lStatus}">
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-check"></i> ${sessionScope.msg1}</h4>
+                                ${sessionScope.msg2}
+                          </div>
+                            <c:remove var="lStatus" scope="session" />
+                            <c:remove var="msg1" scope="session" />
+                            <c:remove var="msg2" scope="session" />
+                        </c:when>                                  
+                        <c:when test="${'2' eq sessionScope.lStatus}">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-warning"></i> ${sessionScope.msg1}</h4>
+                                  Please check if all the fields are filled..
+                             </div>
+                            <c:remove var="lStatus" scope="session" />
+                            <c:remove var="msg1" scope="session" />
+                            <c:remove var="msg2" scope="session" />
+                        </c:when>   
+                           
+              </c:choose>             
 
             </div>
             <!-- /.login-box-body -->
