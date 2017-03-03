@@ -13,6 +13,7 @@ import lk.megafundtpark.remote.exceptions.RemoteException;
 import lk.megafundtpark.remote.interfaces.EbandsFacadeRemote;
 import lk.megafundtpark.remote.interfaces.ElockersFacadeRemote;
 import lk.megafundtpark.remote.interfaces.PayeditemsFacadeRemote;
+import lk.megafundtpark.remote.interfaces.LockerReservationFacadeRemote;
 
 /**
  *
@@ -25,6 +26,7 @@ public abstract class ElockerInteractionServlet extends HttpServlet {
     protected static ElockersFacadeRemote remotelocker;
     protected static EbandsFacadeRemote remoteband;
     protected static PayeditemsFacadeRemote remoteitem;
+    protected static LockerReservationFacadeRemote remotereservation;
    
     
 
@@ -35,6 +37,7 @@ public abstract class ElockerInteractionServlet extends HttpServlet {
             remotelocker = (ElockersFacadeRemote) context.lookup("elockersfacade");
             remoteband = (EbandsFacadeRemote)context.lookup("ebandsfacade");
             remoteitem = (PayeditemsFacadeRemote)context.lookup("payeditemsfacade");
+            remotereservation = (LockerReservationFacadeRemote) context.lookup("lockerreservationfacade");
         } catch (Exception e) {
             System.err.println("Error in initializing the ElockerInteractionServlet");
             e.printStackTrace();
