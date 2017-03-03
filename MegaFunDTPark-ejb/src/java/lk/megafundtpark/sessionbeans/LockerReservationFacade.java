@@ -58,19 +58,19 @@ public class LockerReservationFacade implements LockerReservationFacadeRemote {
         
     }
 	
-    
+    @Override
     public void addNewReservation(String lockerId) {
         lockerInfo.put(lockerId, new ArrayList<String>());
     }
 
-    
+    @Override
     public void addNewReservation(String bandId, String lockerId) {
         List<String> list = new ArrayList<>();
         list.add(lockerId);
         lockerInfo.put(bandId, list);
     }
 
-    
+    @Override
     public void reserveLocker(String bandId, String lockerId) {
         List<String> lockerList = lockerInfo.get(bandId);
         if (lockerList == null) {
@@ -81,7 +81,7 @@ public class LockerReservationFacade implements LockerReservationFacadeRemote {
         }
     }
 
-    
+    @Override
     public void clearLocker(String bandId, String lockerId) {
         List<String> lockerList = lockerInfo.get(bandId);
         if (lockerList != null) {
@@ -91,18 +91,18 @@ public class LockerReservationFacade implements LockerReservationFacadeRemote {
     }
     
     
-    
+    @Override
     public List<String> getReservedLockerList(String bandId) {
         return lockerInfo.get(bandId);
     }
 
-    
+    @Override
     public void removeEBand(String bandId) {
         lockerInfo.remove(bandId);
     }
 
     
-    
+    @Override
     public int getLockersPerEBand(String bandId) {
         List<String> lockers = lockerInfo.get(bandId);
         if (lockers != null) {
@@ -112,7 +112,7 @@ public class LockerReservationFacade implements LockerReservationFacadeRemote {
         }
     }
     
-    
+    @Override
     public int getAllReservedLockerCounter() {
         int lockerNumber = 0;
         Set<String> keys = lockerInfo.keySet();
